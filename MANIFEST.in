@@ -1,0 +1,8 @@
+include AUTHORS
+include README.rst
+include ChangeLog
+include LICENSE
+recursive-include odl-os-drivers/locale *
+exclude .gitignore
+exclude .gitreview
+global-exclude *.pyc

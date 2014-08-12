@@ -1,0 +1,4 @@
+pbr>=0.6,!=0.7,<1.0
+requests
+oslo.config>=1.4.0.0a3
+-e git://github.com/openstack/neutron.git#egg=neutron
