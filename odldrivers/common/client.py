@@ -38,7 +38,7 @@ class OpenDaylightRestClient(object):
         data = jsonutils.dumps(obj, indent=2) if obj else None
         url = '/'.join([self.url, urlpath])
         LOG.debug(_('ODL-----> sending URL (%s) <-----ODL') % url)
-        LOG.debug(_('ODL-----> sending JSON (%s) <-----ODL') % obj)
+        LOG.debug(_('ODL-----> sending JSON (%s) <-----ODL') % data)
         r = requests.request(method, url=url,
                              headers=headers, data=data,
                              auth=self.auth, timeout=self.timeout)
