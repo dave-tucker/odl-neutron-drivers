@@ -69,4 +69,9 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+### PBR
+
+AUTHORS
+ChangeLog
+
 
