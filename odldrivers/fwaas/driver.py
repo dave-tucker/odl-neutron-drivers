@@ -7,6 +7,8 @@
 #
 # @author: Dave Tucker <djt@redhat.com>
 
+from oslo.config import cfg
+
 from neutron.openstack.common import log as logging
 from neutron.services.firewall.drivers import fwaas_base
 
