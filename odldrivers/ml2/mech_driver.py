@@ -27,8 +27,8 @@ from neutron.openstack.common import log
 from neutron.plugins.common import constants
 from neutron.plugins.ml2 import driver_api as api
 
-from odldrivers.ml2 import client as odl_client
-from odldrivers.ml2 import config  # noqa
+from odldrivers.common import client as odl_client
+from odldrivers.common import config  # noqa
 
 LOG = log.getLogger(__name__)
 

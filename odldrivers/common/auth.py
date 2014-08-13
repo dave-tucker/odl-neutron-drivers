@@ -19,7 +19,7 @@ import time
 from oslo.config import cfg
 import requests
 
-from odldrivers.ml2 import exceptions as exc
+from odldrivers.common import exceptions as exc
 
 
 class JsessionId(requests.auth.AuthBase):

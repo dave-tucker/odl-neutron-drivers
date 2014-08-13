@@ -21,7 +21,7 @@ from neutron.plugins.ml2 import plugin
 from neutron.tests import base
 from neutron.tests.unit import test_db_plugin as test_plugin
 
-from odldrivers.ml2 import client as odl_client
+from odldrivers.common import client as odl_client
 from odldrivers.ml2 import mech_driver as mech_odl
 
 PLUGIN_NAME = 'neutron.plugins.ml2.plugin.Ml2Plugin'
@@ -34,7 +34,7 @@ class OpenDaylightTestCase(test_plugin.NeutronDbPluginV2TestCase):
         # we can successfully call through to all mechanism
         # driver apis.
         config.cfg.CONF.set_override('mechanism_drivers',
-                                     ['logger', 'opendaylight'],
+                                     ['logger', 'odl'],
                                      'ml2')
         # Set URL/user/pass so init doesn't throw a cfg required error.
         # They are not used in these tests since sendjson is overwritten.
@@ -73,7 +73,7 @@ class OpenDayLightMechanismConfigTests(base.BaseTestCase):
     def _set_config(self, url='http://127.0.0.1:9999', username='someuser',
                     password='somepass'):
         config.cfg.CONF.set_override('mechanism_drivers',
-                                     ['logger', 'opendaylight'],
+                                     ['logger', 'odl'],
                                      'ml2')
         config.cfg.CONF.set_override('url', url, 'odl_rest')
         config.cfg.CONF.set_override('username', username, 'odl_rest')

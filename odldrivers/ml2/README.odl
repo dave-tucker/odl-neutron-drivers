@@ -22,12 +22,12 @@ How to use the OpenDaylight ML2 MechanismDriver
 To use the ML2 MechanismDriver, you need to ensure you have it configured
 as one of the "mechanism_drivers" in ML2:
 
-    mechanism_drivers=opendaylight
+    mechanism_drivers=odl
 
-The next step is to setup the "[ml2_odl]" section in either the ml2_conf.ini
-file or in a separate ml2_conf_odl.ini file. An example is shown below:
+The next step is to setup the "[odl_rest]" section in either the ml2_conf.ini
+file or in a plugins/opendaylight/odl_rest.ini file. An example is shown below:
 
-    [ml2_odl]
+    [odl_rest]
     password = admin
     username = admin
     url = http://192.168.100.1:8080/controller/nb/v2/neutron

@@ -19,7 +19,7 @@ import requests
 from neutron.openstack.common import jsonutils
 from neutron.openstack.common import log
 
-from odldrivers.ml2 import auth
+from odldrivers.common import auth
 
 LOG = log.getLogger(__name__)
 
