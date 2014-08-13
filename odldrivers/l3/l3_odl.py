@@ -92,20 +92,20 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
         router_dict = super(OpenDaylightL3RouterPlugin, self).create_router(
             context, router)
         url = ROUTERS
-        self.client.sendjson('post', url, {ROUTERS[:-1]: router_dict}, None)
+        self.client.sendjson('post', url, {ROUTERS[:-1]: router_dict})
         return router_dict
 
     def update_router(self, context, id, router):
         router_dict = super(OpenDaylightL3RouterPlugin, self).update_router(
             context, id, router)
         url = ROUTERS[:-1] + "/" + id
-        self.client.sendjson('put', url, {ROUTERS[:-1]: router_dict}, None)
+        self.client.sendjson('put', url, {ROUTERS[:-1]: router_dict})
         return router_dict
 
     def delete_router(self, context, id):
         super(OpenDaylightL3RouterPlugin, self).update_router(context, id)
         url = ROUTERS[:-1] + "/" + id
-        self.client.sendjson('delete', url, None, None)
+        self.client.sendjson('delete', url, None)
 
     #def add_router_interface(self, context, router_id, interface_info):
     #def remove_router_interface(self, context, router_id, interface_info):
@@ -114,17 +114,17 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
         fip_dict = super(OpenDaylightL3RouterPlugin, self).create_floatingip(
             context, floatingip)
         url = FLOATINGIPS
-        self.client.sendjson('post', url, {FLOATINGIPS[:-1]: fip_dict}, None)
+        self.client.sendjson('post', url, {FLOATINGIPS[:-1]: fip_dict})
         return fip_dict
 
     def update_floatingip(self, context, id, floatingip):
         fip_dict = super(OpenDaylightL3RouterPlugin, self).update_floatingip(
             context, id, floatingip)
         url = FLOATINGIPS[:-1] + "/" + id
-        self.client.sendjson('put', url, {FLOATINGIPS[:-1]: fip_dict}, None)
+        self.client.sendjson('put', url, {FLOATINGIPS[:-1]: fip_dict})
         return fip_dict
 
     def delete_floatingip(self, context, id):
         super(OpenDaylightL3RouterPlugin, self).update_floatingip(context, id)
         url = FLOATINGIPS[:-1] + "/" + id
-        self.client.sendjson('delete', url, None, None)
+        self.client.sendjson('delete', url, None)
