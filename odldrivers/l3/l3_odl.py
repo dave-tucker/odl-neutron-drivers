@@ -104,8 +104,9 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
         router_dict = super(OpenDaylightL3RouterPlugin, self).update_router(
             context, id, router)
         url = ROUTERS + "/" + id
-        self.filter_update_router_attributes(router)
-        self.client.sendjson('put', url, {ROUTERS[:-1]: router_dict})
+        resource = router_dict.copy()
+        self.filter_update_router_attributes(resource)
+        self.client.sendjson('put', url, {ROUTERS[:-1]: resource})
         return router_dict
 
     def delete_router(self, context, id):
