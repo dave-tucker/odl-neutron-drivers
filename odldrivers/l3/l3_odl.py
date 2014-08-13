@@ -30,8 +30,6 @@ from odldrivers.common import utils
 
 ROUTERS = 'routers'
 FLOATINGIPS = 'floatingips'
-ADD_ROUTER_INTERFACE = 'add_router_interface'
-REMOVE_ROUTER_INTERFACE = 'remove_router_interface'
 
 
 class L3RouterPluginRpcCallbacks(n_rpc.RpcCallback,
@@ -116,20 +114,8 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
         url = ROUTERS + "/" + id
         self.client.sendjson('delete', url, None)
 
-    def add_router_interface(self, context, router_id, interface_info):
-        info = super(OpenDaylightL3RouterPlugin, self).add_router_interface(
-            context, router_id, interface_info)
-        url = ROUTERS + "/" + router_id + "/" + ADD_ROUTER_INTERFACE
-        self.client.sendjson('put', url, info, None)
-        return info
-
-    def remove_router_interface(self, context, router_id, interface_info):
-        info = super(OpenDaylightL3RouterPlugin, self).remove_router_interface(
-            context, router_id, interface_info)
-        url = ROUTERS + "/" + router_id + "/" + REMOVE_ROUTER_INTERFACE
-        self.client.sendjson('put', url, info, None)
-        return info
-
+    #def add_router_interface(self, context, router_id, interface_info):
+    #def remove_router_interface(self, context, router_id, interface_info):
     def create_floatingip(self, context, floatingip,
                           initial_status=q_const.FLOATINGIP_STATUS_ACTIVE):
         fip_dict = super(OpenDaylightL3RouterPlugin, self).create_floatingip(
