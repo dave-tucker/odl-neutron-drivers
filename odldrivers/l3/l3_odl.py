@@ -26,6 +26,7 @@ from neutron.plugins.common import constants
 
 from odldrivers.common import client as odl_client
 from odldrivers.common import config  # noqa
+from odldrivers.common import utils
 
 ROUTERS = 'routers'
 FLOATINGIPS = 'floatingips'
@@ -88,6 +89,10 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
         return ("L3 Router Service Plugin for basic L3 forwarding"
                 " using OpenDaylight")
 
+    def filter_update_router_attributes(self, router):
+        """Filter out router attributes for an update operation."""
+        utils.try_del(router, ['id', 'tenant_id', 'status'])
+
     def create_router(self, context, router):
         router_dict = super(OpenDaylightL3RouterPlugin, self).create_router(
             context, router)
@@ -99,6 +104,7 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
         router_dict = super(OpenDaylightL3RouterPlugin, self).update_router(
             context, id, router)
         url = ROUTERS + "/" + id
+        self.filter_update_router_attributes(router)
         self.client.sendjson('put', url, {ROUTERS[:-1]: router_dict})
         return router_dict
 

@@ -29,6 +29,7 @@ from neutron.plugins.ml2 import driver_api as api
 
 from odldrivers.common import client as odl_client
 from odldrivers.common import config  # noqa
+from odldrivers.common import utils as odl_utils
 
 LOG = log.getLogger(__name__)
 
@@ -42,15 +43,6 @@ ODL_PORTS = 'ports'
 not_found_exception_map = {ODL_NETWORKS: n_exc.NetworkNotFound,
                            ODL_SUBNETS: n_exc.SubnetNotFound,
                            ODL_PORTS: n_exc.PortNotFound}
-
-
-def try_del(d, keys):
-    """Ignore key errors when deleting from a dictionary."""
-    for key in keys:
-        try:
-            del d[key]
-        except KeyError:
-            pass
 
 
 class OpenDaylightMechanismDriver(api.MechanismDriver):
@@ -118,7 +110,7 @@ class OpenDaylightMechanismDriver(api.MechanismDriver):
 
     def filter_create_network_attributes(self, network, context, dbcontext):
         """Filter out network attributes not required for a create."""
-        try_del(network, ['status', 'subnets'])
+        odl_utils.try_del(network, ['status', 'subnets'])
 
     def filter_create_subnet_attributes(self, subnet, context, dbcontext):
         """Filter out subnet attributes not required for a create."""
@@ -130,7 +122,7 @@ class OpenDaylightMechanismDriver(api.MechanismDriver):
         # TODO(kmestery): Converting to uppercase due to ODL bug
         # https://bugs.opendaylight.org/show_bug.cgi?id=477
         port['mac_address'] = port['mac_address'].upper()
-        try_del(port, ['status'])
+        odl_utils.try_del(port, ['status'])
 
     def sync_resources(self, resource_name, collection_name, resources,
                        context, dbcontext, attr_filter):
@@ -185,17 +177,17 @@ class OpenDaylightMechanismDriver(api.MechanismDriver):
 
     def filter_update_network_attributes(self, network, context, dbcontext):
         """Filter out network attributes for an update operation."""
-        try_del(network, ['id', 'status', 'subnets', 'tenant_id'])
+        odl_utils.try_del(network, ['id', 'status', 'subnets', 'tenant_id'])
 
     def filter_update_subnet_attributes(self, subnet, context, dbcontext):
         """Filter out subnet attributes for an update operation."""
-        try_del(subnet, ['id', 'network_id', 'ip_version', 'cidr',
+        odl_utils.try_del(subnet, ['id', 'network_id', 'ip_version', 'cidr',
                          'allocation_pools', 'tenant_id'])
 
     def filter_update_port_attributes(self, port, context, dbcontext):
         """Filter out port attributes for an update operation."""
         self.add_security_groups(context, dbcontext, port)
-        try_del(port, ['network_id', 'id', 'status', 'mac_address',
+        odl_utils.try_del(port, ['network_id', 'id', 'status', 'mac_address',
                        'tenant_id', 'fixed_ips'])
 
     create_object_map = {ODL_NETWORKS: filter_create_network_attributes,
