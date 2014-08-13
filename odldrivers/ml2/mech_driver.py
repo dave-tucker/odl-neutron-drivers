@@ -65,11 +65,17 @@ class OpenDaylightMechanismDriver(api.MechanismDriver):
     out_of_sync = True
 
     def initialize(self):
+        required_opts = ('url', 'username', 'password')
+        for opt in required_opts:
+            if not getattr(cfg.CONF.odl_rest, opt):
+                raise cfg.RequiredOptError(opt, 'odl_rest')
+
         self.client = odl_client.OpenDaylightRestClient(
-            cfg.CONF.ml2_odl.url,
-            cfg.CONF.ml2_odl.username,
-            cfg.CONF.ml2_odl.password,
-            cfg.CONF.ml2_odl.timeout
+            cfg.CONF.odl_rest.url,
+            cfg.CONF.odl_rest.username,
+            cfg.CONF.odl_rest.password,
+            cfg.CONF.odl_rest.timeout,
+            cfg.CONF.odl_rest.session_timeout
         )
         self.vif_type = portbindings.VIF_TYPE_OVS
         self.vif_details = {portbindings.CAP_PORT_FILTER: True}

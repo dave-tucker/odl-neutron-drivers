@@ -38,9 +38,9 @@ class OpenDaylightTestCase(test_plugin.NeutronDbPluginV2TestCase):
                                      'ml2')
         # Set URL/user/pass so init doesn't throw a cfg required error.
         # They are not used in these tests since sendjson is overwritten.
-        config.cfg.CONF.set_override('url', 'http://127.0.0.1:9999', 'ml2_odl')
-        config.cfg.CONF.set_override('username', 'someuser', 'ml2_odl')
-        config.cfg.CONF.set_override('password', 'somepass', 'ml2_odl')
+        config.cfg.CONF.set_override('url', 'http://127.0.0.1:9999', 'odl_rest')
+        config.cfg.CONF.set_override('username', 'someuser', 'odl_rest')
+        config.cfg.CONF.set_override('password', 'somepass', 'odl_rest')
 
         super(OpenDaylightTestCase, self).setUp(PLUGIN_NAME)
         self.port_create_status = 'DOWN'
@@ -75,9 +75,9 @@ class OpenDayLightMechanismConfigTests(base.BaseTestCase):
         config.cfg.CONF.set_override('mechanism_drivers',
                                      ['logger', 'opendaylight'],
                                      'ml2')
-        config.cfg.CONF.set_override('url', url, 'ml2_odl')
-        config.cfg.CONF.set_override('username', username, 'ml2_odl')
-        config.cfg.CONF.set_override('password', password, 'ml2_odl')
+        config.cfg.CONF.set_override('url', url, 'odl_rest')
+        config.cfg.CONF.set_override('username', username, 'odl_rest')
+        config.cfg.CONF.set_override('password', password, 'odl_rest')
 
     # We should work out a way
     def _test_missing_config(self, **kwargs):
@@ -89,16 +89,15 @@ class OpenDayLightMechanismConfigTests(base.BaseTestCase):
         self._set_config()
         plugin.Ml2Plugin()
 
-# We should work out a way to test for this...
-#
-#    def test_missing_url_raises_exception(self):
-#        self._test_missing_config(url=None)
-#
-#    def test_missing_username_raises_exception(self):
-#        self._test_missing_config(username=None)
-#
-#    def test_missing_password_raises_exception(self):
-#        self._test_missing_config(password=None)
+
+    def test_missing_url_raises_exception(self):
+        self._test_missing_config(url=None)
+
+    def test_missing_username_raises_exception(self):
+        self._test_missing_config(username=None)
+
+    def test_missing_password_raises_exception(self):
+        self._test_missing_config(password=None)
 
 
 class OpenDaylightMechanismTestBasicGet(test_plugin.TestBasicGet,

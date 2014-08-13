@@ -29,4 +29,4 @@ odl_opts = [
                help=_("Tomcat session timeout in minutes.")),
 ]
 
-cfg.CONF.register_opts(odl_opts, "ml2_odl")
+cfg.CONF.register_opts(odl_opts, "odl_rest")

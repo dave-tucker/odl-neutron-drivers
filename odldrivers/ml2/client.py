@@ -26,12 +26,10 @@ LOG = log.getLogger(__name__)
 
 class OpenDaylightRestClient(object):
 
-    def __init__(self, url, username, password, timeout):
+    def __init__(self, url, username, password, timeout, session_timeout):
         self.url = url
-        self.username = username
-        self.password = password
         self.timeout = timeout
-        self.auth = auth.JsessionId(url, username, password)
+        self.auth = auth.JsessionId(url, username, password, session_timeout)
 
     def sendjson(self, method, urlpath, obj, ignorecodes=[]):
         """Send json to the OpenDaylight controller."""

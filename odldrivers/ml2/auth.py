@@ -30,7 +30,7 @@ class JsessionId(requests.auth.AuthBase):
     set of cookies are obtained.
     """
 
-    def __init__(self, url, username, password):
+    def __init__(self, url, username, password, timeout):
         """Initialization function for JsessionId."""
 
         # NOTE(kmestery) The 'limit' paramater is intended to limit how much
@@ -43,7 +43,7 @@ class JsessionId(requests.auth.AuthBase):
         self.auth_cookies = None
         self.last_request = None
         self.expired = None
-        self.session_timeout = cfg.CONF.ml2_odl.session_timeout * 60
+        self.session_timeout = timeout * 60
         self.session_deadline = 0
 
     def obtain_auth_cookies(self):
