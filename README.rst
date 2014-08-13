@@ -23,6 +23,9 @@ To use these drivers with Devstack....
     ENABLE_TENANT_TUNNELS=True
     Q_ML2_TENANT_NETWORK_TYPE=vxlan
 
+    #Enable ODL L3, Firewall, Loadbalancer
+    Q_SERVICE_PLUGIN_CLASSES=odl_router,firewall,lbaas
+
     [[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
     [agent]
     minimize_polling=True
@@ -33,10 +36,16 @@ To use these drivers with Devstack....
     username=admin
     password=admin
 
-    # For L3
-    [[post-config]|/etc/neutron/neutron.conf]
+    # For FWaaS
+    [[post-config]|/etc/neutron/fwaas_driver.ini]
+    [fwaas]
+    driver = odldrivers.fwaas.driver.OpenDaylightFwaasDriver
+    enabled = True
+
+    # For LBaaS
+    [[post-config]|/etc/neutron/lbaas_agent.ini]
     [DEFAULT]
-    service_plugins = odldrivers.l3.l3_odl.OpenDaylightL3ServicePlugin
+    device_driver = odldrivers.lbaas.driver.OpenDaylightLbaasDriver
 
 3) Start devstack::
 
