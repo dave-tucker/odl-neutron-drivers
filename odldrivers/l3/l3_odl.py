@@ -98,13 +98,13 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
     def update_router(self, context, id, router):
         router_dict = super(OpenDaylightL3RouterPlugin, self).update_router(
             context, id, router)
-        url = ROUTERS[:-1] + "/" + id
+        url = ROUTERS + "/" + id
         self.client.sendjson('put', url, {ROUTERS[:-1]: router_dict})
         return router_dict
 
     def delete_router(self, context, id):
         super(OpenDaylightL3RouterPlugin, self).update_router(context, id)
-        url = ROUTERS[:-1] + "/" + id
+        url = ROUTERS + "/" + id
         self.client.sendjson('delete', url, None)
 
     #def add_router_interface(self, context, router_id, interface_info):
@@ -120,11 +120,11 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
     def update_floatingip(self, context, id, floatingip):
         fip_dict = super(OpenDaylightL3RouterPlugin, self).update_floatingip(
             context, id, floatingip)
-        url = FLOATINGIPS[:-1] + "/" + id
+        url = FLOATINGIPS + "/" + id
         self.client.sendjson('put', url, {FLOATINGIPS[:-1]: fip_dict})
         return fip_dict
 
     def delete_floatingip(self, context, id):
         super(OpenDaylightL3RouterPlugin, self).update_floatingip(context, id)
-        url = FLOATINGIPS[:-1] + "/" + id
+        url = FLOATINGIPS + "/" + id
         self.client.sendjson('delete', url, None)
