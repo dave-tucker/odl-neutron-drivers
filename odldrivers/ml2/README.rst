@@ -20,12 +20,12 @@ using GRE or VXLAN tunnels.
 How to use the OpenDaylight ML2 MechanismDriver
 ===============================================
 To use the ML2 MechanismDriver, you need to ensure you have it configured
-as one of the "mechanism_drivers" in ML2:
+as one of the "mechanism_drivers" in ML2::
 
     mechanism_drivers=odl
 
 The next step is to setup the "[odl_rest]" section in either the ml2_conf.ini
-file or in a plugins/opendaylight/odl_rest.ini file. An example is shown below:
+file or in a plugins/opendaylight/odl_rest.ini file. An example is shown below::
 
     [odl_rest]
     password = admin
