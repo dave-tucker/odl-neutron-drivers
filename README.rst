@@ -33,6 +33,11 @@ To use these drivers with Devstack....
     username=admin
     password=admin
 
+    # For L3
+    [[post-config]|/etc/neutron/neutron.conf]
+    [DEFAULT]
+    service_plugins = odldrivers.l3.l3_odl.OpenDaylightL3ServicePlugin
+
 3) Start devstack::
 
     cd devstack

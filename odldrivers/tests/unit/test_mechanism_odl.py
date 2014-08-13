@@ -38,7 +38,9 @@ class OpenDaylightTestCase(test_plugin.NeutronDbPluginV2TestCase):
                                      'ml2')
         # Set URL/user/pass so init doesn't throw a cfg required error.
         # They are not used in these tests since sendjson is overwritten.
-        config.cfg.CONF.set_override('url', 'http://127.0.0.1:9999', 'odl_rest')
+        config.cfg.CONF.set_override('url',
+                                     'http://127.0.0.1:9999',
+                                     'odl_rest')
         config.cfg.CONF.set_override('username', 'someuser', 'odl_rest')
         config.cfg.CONF.set_override('password', 'somepass', 'odl_rest')
 
@@ -88,7 +90,6 @@ class OpenDayLightMechanismConfigTests(base.BaseTestCase):
     def test_valid_config(self):
         self._set_config()
         plugin.Ml2Plugin()
-
 
     def test_missing_url_raises_exception(self):
         self._test_missing_config(url=None)

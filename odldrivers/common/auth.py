@@ -16,7 +16,6 @@
 
 import time
 
-from oslo.config import cfg
 import requests
 
 from odldrivers.common import exceptions as exc
