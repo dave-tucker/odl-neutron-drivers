@@ -20,6 +20,8 @@ LOG = logging.getLogger(__name__)
 
 class OpenDaylightFwaasDriver(fwaas_base.FwaasDriverBase):
 
+    """OpenDaylight FWaaS Driver"""
+
     def __init__(self):
         LOG.debug(_("Initializing OpenDaylight FWaaS driver"))
         self.client = odl_client.OpenDaylightRestClient(

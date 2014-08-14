@@ -22,9 +22,8 @@ To use these drivers with Devstack....
     ODL_MGR_IP=192.168.50.1
     ENABLE_TENANT_TUNNELS=True
     Q_ML2_TENANT_NETWORK_TYPE=vxlan
-
-    #Enable ODL L3, Firewall, Loadbalancer
-    Q_SERVICE_PLUGIN_CLASSES=odl_router,firewall,lbaas
+    Q_ML2_L3_PLUGIN=odl-router
+    Q_SERVICE_PLUGIN_CLASSES=firewall,lbaas
 
     [[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
     [agent]
