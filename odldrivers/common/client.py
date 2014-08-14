@@ -44,7 +44,7 @@ class OpenDaylightRestClient(object):
                              auth=self.auth, timeout=self.timeout)
 
         # ignorecodes contains a list of HTTP error codes to ignore.
-        LOG.debug(_('ODL-----> status code (%i) <------ODL)' % r.status_code)
+        LOG.debug(_('ODL-----> status code (%i) <------ODL') % r.status_code)
         if r.status_code in ignorecodes:
             return
         r.raise_for_status()
