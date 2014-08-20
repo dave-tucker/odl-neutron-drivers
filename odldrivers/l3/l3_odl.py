@@ -9,19 +9,11 @@
 
 from oslo.config import cfg
 
-from neutron.api.rpc.agentnotifiers import l3_rpc_agent_api
 from neutron.common import constants as q_const
-from neutron.common import rpc as n_rpc
-from neutron.common import topics
-from neutron.db import api as qdbapi
 from neutron.db import common_db_mixin
 from neutron.db import extraroute_db
 from neutron.db import l3_dvr_db
-from neutron.db import l3_dvrscheduler_db
 from neutron.db import l3_gwmode_db
-from neutron.db import l3_rpc_base
-from neutron.db import model_base
-from neutron.openstack.common import importutils
 from neutron.plugins.common import constants
 
 from odldrivers.common import client as odl_client
@@ -47,7 +39,6 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
                                    "extraroute"]
 
     def __init__(self):
-        qdbapi.register_models(base=model_base.BASEV2)
         self.client = odl_client.OpenDaylightRestClient(
             cfg.CONF.odl_rest.url,
             cfg.CONF.odl_rest.username,
