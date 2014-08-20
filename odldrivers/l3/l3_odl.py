@@ -47,11 +47,9 @@ class OpenDaylightL3RouterPlugin(common_db_mixin.CommonDbMixin,
             cfg.CONF.odl_rest.session_timeout
         )
 
-    @staticmethod
     def get_plugin_type(self):
         return constants.L3_ROUTER_NAT
 
-    @staticmethod
     def get_plugin_description(self):
         """returns string description of the plugin."""
         return ("L3 Router Service Plugin for basic L3 forwarding"
