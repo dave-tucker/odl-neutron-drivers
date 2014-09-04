@@ -1,0 +1,16 @@
+{
+  "hosts": {
+    "opendaylight": {
+      "name": "opendaylight",
+      "ipaddress": "192.168.50.1"
+    },
+    "devstack-control": {
+      "name": "devstack-control",
+      "ipaddress": "192.168.50.20"
+    },
+    "devstack-compute": {
+      "name": "devstack-compute",
+      "ipaddress": "192.168.50.21"
+    }
+  }
+}

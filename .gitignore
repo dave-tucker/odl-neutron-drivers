@@ -75,3 +75,8 @@ AUTHORS
 ChangeLog
 
 
+### https://raw.github.com/github/gitignore/master/Global/Vagrant.gitignore
+
+.vagrant/
+
+
