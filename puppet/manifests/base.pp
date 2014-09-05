@@ -86,7 +86,6 @@ $deps = [
     'python2.7',
     'qemu',
     'qemu-kvm',
-    'qpidd',
     'rabbitmq-server',
     'radvd',
     'screen',

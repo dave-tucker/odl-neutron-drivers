@@ -16,7 +16,7 @@ file { '/home/vagrant/devstack/local.conf':
 }
 
 exec { 'Install Drivers':
-    command => 'python setup.py install',
+    command => 'pip install -r requirements.txt && python setup.py install',
     cwd     => '/vagrant',
     path    => $::path,
     user    => 'root'
