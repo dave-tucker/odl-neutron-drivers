@@ -28,8 +28,8 @@ VNCSERVER_PROXYCLIENT_ADDRESS=$HOST_IP
 VNCSERVER_LISTEN=0.0.0.0
 
 disable_all_services
-enable_service neutron 
-enable_service quantum 
+enable_service neutron
+enable_service quantum
 enable_service nova
 enable_service n-cpu
 enable_service n-novnc
@@ -45,7 +45,8 @@ ODL_MGR_IP=<%= @hosts['opendaylight']['ipaddress'] %>
 ENABLE_TENANT_TUNNELS=True
 Q_ML2_TENANT_NETWORK_TYPE=vxlan
 Q_ML2_L3_PLUGIN=odldrivers.l3.l3_odl.OpenDaylightL3RouterPlugin
-Q_SERVICE_PLUGIN_CLASSES=firewall,lbaas
+#Q_SERVICE_PLUGIN_CLASSES=firewall,lbaas
+Q_SERVICE_PLUGIN_CLASSES=lbaas
 
 [[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
 [agent]
@@ -57,11 +58,11 @@ url=http://<%= @hosts['opendaylight']['ipaddress'] %>:8080/controller/nb/v2/neut
 username=admin
 password=admin
 
-# For FWaaS
-[[post-config]|/etc/neutron/fwaas_driver.ini]
-[fwaas]
-driver = odldrivers.fwaas.driver.OpenDaylightFwaasDriver
-enabled = True
+## For FWaaS
+#[[post-config]|/etc/neutron/fwaas_driver.ini]
+#[fwaas]
+#driver = odldrivers.fwaas.driver.OpenDaylightFwaasDriver
+#enabled = True
 
 # For LBaaS
 [[post-config]|/etc/neutron/lbaas_agent.ini]
