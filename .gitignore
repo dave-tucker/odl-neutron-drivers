@@ -74,6 +74,9 @@ docs/_build/
 AUTHORS
 ChangeLog
 
+### Requirements
+
+src/
 
 ### https://raw.github.com/github/gitignore/master/Global/Vagrant.gitignore
 
