@@ -50,3 +50,16 @@ To use these drivers with Devstack....
 
     cd devstack
     ./stack.sh
+
+Testing
+-------
+
+A Vagrantfile is provided to easily create a DevStack environment to test with
+First, run the ODL Controller on your local machine, then::
+
+    vagrant up
+
+If you would like more than one compute node, you can set the following environment variable::
+
+    #Note: Only 3 or less nodes are supported today
+    DEVSTACK_NUM_COMPUTE_NODES=3
