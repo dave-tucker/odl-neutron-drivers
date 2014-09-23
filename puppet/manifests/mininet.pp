@@ -35,7 +35,8 @@ exec { 'Install Mininet':
 
 exec {'openvswitch-2.1.2.tar.gz':
     command => 'wget http://openvswitch.org/releases/openvswitch-2.1.2.tar.gz',
-    cwd     => '/home/vagrant',
+    cwd     => '/home/vagrant/openvswitch-2.1.2.tar.gz',
+    creates => '/home/vagrant',
     path    => $::path,
     user    => 'vagrant'
 }

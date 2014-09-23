@@ -98,7 +98,8 @@ package { $deps:
 
 exec {"openvswitch-${ovs_version}.tar.gz":
     command => "wget http://openvswitch.org/releases/openvswitch-${ovs_version}.tar.gz",
-    cwd     => '/home/vagrant',
+    cwd     => "/home/vagrant/openvswitch-${ovs_version}.tar.gz",
+    creates => '/home/vagrant/',
     path    => $::path,
     user    => 'vagrant'
 }
@@ -106,6 +107,7 @@ exec {"openvswitch-${ovs_version}.tar.gz":
 exec { 'Extract Open vSwitch':
     command => "tar -xvf openvswitch-${ovs_version}.tar.gz",
     cwd     => '/home/vagrant',
+    creates => "/home/vagrant/openvswitch-${ovs_version}",
     user    => 'vagrant',
     path    => $::path,
     timeout => 0,
@@ -115,6 +117,7 @@ exec { 'Extract Open vSwitch':
 exec { 'Compile Open vSwitch':
     command => 'fakeroot debian/rules binary',
     cwd     => "/home/vagrant/openvswitch-${ovs_version}",
+    creates => "/home/vagrant/openvswitch-common_${ovs_version}-1_amd64.deb",
     user    => 'root',
     path    => $::path,
     timeout => 0,
