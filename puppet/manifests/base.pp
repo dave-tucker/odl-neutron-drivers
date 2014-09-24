@@ -96,10 +96,10 @@ package { $deps:
     ensure   => installed,
 }
 
-exec {"openvswitch-${ovs_version}.tar.gz":
+exec {"Download Open vSwitch":
     command => "wget http://openvswitch.org/releases/openvswitch-${ovs_version}.tar.gz",
-    cwd     => "/home/vagrant/openvswitch-${ovs_version}.tar.gz",
-    creates => '/home/vagrant/',
+    cwd     => "/home/vagrant",
+    creates => "/home/vagrant/openvswitch-${ovs_version}.tar.gz",
     path    => $::path,
     user    => 'vagrant'
 }
@@ -111,7 +111,7 @@ exec { 'Extract Open vSwitch':
     user    => 'vagrant',
     path    => $::path,
     timeout => 0,
-    require => Exec["openvswitch-${ovs_version}.tar.gz"]
+    require => Exec['Download Open vSwitch']
 }
 
 exec { 'Compile Open vSwitch':
