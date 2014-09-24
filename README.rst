@@ -35,6 +35,11 @@ To use these drivers with Devstack....
     username=admin
     password=admin
 
+    # For L3
+    [[post-config]|/etc/neutron/l3_agent.ini]]
+    [DEFAULT]
+    interface_driver = neutron.agent.linux.interface.NullDriver
+
     # For FWaaS
     [[post-config]|/etc/neutron/fwaas_driver.ini]
     [fwaas]
