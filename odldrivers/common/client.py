@@ -16,7 +16,7 @@
 
 import requests
 
-from neutron.openstack.common import jsonutils
+from oslo.serialization import jsonutils
 from neutron.openstack.common import log
 
 from odldrivers.common import auth
